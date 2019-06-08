@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="./WEB-INF/facelets/template/plantilla.xhtml">
+            <ui:define name="title">
+                Pacientes
+            </ui:define>
+            <ui:define name="content">  
+                <h1>Pacientes</h1>
+                <h:form>
+
+                       
+                    <p:dataTable value="#{param}" var="p">
+                            <p:column headerText="Codigo" style="width: 20px">
+                                <h:outputText value="#{pacienteBean.paciente.codigo}"/>
+                            </p:column>
+
+                            <p:column headerText="Nombre Paciente" style="width: 40px">
+                                <h:outputText value="#{pacienteBean.paciente.nombre}"/>
+                            </p:column>
+
+                           <p:column headerText="Dueño o Cuidador" style="width: 40px">
+                               <h:outputText value="#{pacienteBean.paciente.dueno}"/>
+                            </p:column>
+                              
+                            
+                             <p:column headerText="Veterinario" style="width: 40px">
+                                 <h:outputText value="#{pacienteBean.paciente.veterinario}"/>
+                            </p:column>
+
+                           <p:column headerText="Enfermedad" style="width: 30px">
+                               <h:outputText value="#{pacienteBean.paciente.enfermedad}"/>
+                            </p:column>
+                            <p:column headerText="Medicamento" style="width: 30px">
+                                <h:outputText value="#{pacienteBean.paciente.medicamento}"/>
+                            </p:column>
+
+                            <p:column headerText="Estado" style="width: 30px">
+                                <h:outputText value="#{pacienteBean.paciente.estado ? 'Activo':'Inactivo'}"/>
+                            </p:column>
+                            
+                            
+                        </p:dataTable>
+                    
+                    <p:commandButton  value="Regresar" action="listarP" icon="ui-icon-arrowreturnthick-1-w" />
+                </h:form>
+            </ui:define>
+        </ui:composition>
+        </body>
+</html>
+

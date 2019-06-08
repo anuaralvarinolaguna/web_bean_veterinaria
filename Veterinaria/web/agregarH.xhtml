@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <body>
+        <ui:composition template="./WEB-INF/facelets/template/plantilla.xhtml">
+            <ui:define name="title">
+                Agregar Historia
+            </ui:define>
+            <ui:define name="content">
+               
+                <h:form styleClass="form">
+                    <p:growl id="mensajes" showDetail="true" life="4000"/>
+
+                     <p:outputPanel style="padding-bottom: 5px; text-align: left">
+                        <p:commandButton value="Agregar" icon="ui-icon-document" onclick="PF('dlgNuevo').show()" />
+                        
+                            
+                    </p:outputPanel>
+
+                    <p:outputPanel id="pnlListado">
+                      
+                    </p:outputPanel>
+
+                    <p:outputPanel style="padding-top: 5px;">
+                        
+                    </p:outputPanel>
+
+                    <p:dialog header="Agregar historia" widgetVar="dlgNuevo" id="dlgNuevo" 
+                              closeOnEscape="true" modal="true">
+                        <h:panelGrid columns="2">
+
+                                                                                                  
+                                                     
+                           <p:outputLabel for="effect" value="Fecha de Historia:" />
+                           <p:calendar id="effect" value="#{historiaBean.historia.fecha}" effect="fold" />
+                                                
+                            <h:outputLabel for="codigo" value="Nombre Paciente"/>
+                            <p:selectOneMenu id="codigopaciente" value="#{historiaBean.historia.codigopaciente}">
+                                <f:selectItems value="#{pacienteBean.pacientes}" var="p" itemLabel="#{p.nombre}" itemValue="#{p.codigo}"/>
+                            </p:selectOneMenu>
+                            
+                            <h:outputLabel for="codigo" value="Enfermedad:"/>
+                            <p:selectOneMenu id="codigoenfermedad" value="#{historiaBean.historia.codigoenfermedad}">
+                                <f:selectItems value="#{enfermedadBean.enfermedades}" var="e" itemLabel="#{e.nombre}" itemValue="#{e.codigo}"/>
+                            </p:selectOneMenu>
+
+                       
+                            <h:outputLabel for="estado" value="Estado: "/>
+                            <h:selectBooleanCheckbox id="estado" value="#{historiaBean.historia.estado}"/>
+
+
+                            <h:panelGroup/>
+                            <p:commandButton value="Agregar" 
+                                             action="#{historiaBean.setHistoria(historiaBean.agregar())}" icon=" ui-icon-disk" 
+                                             oncomplete="PF('dlgNuevo').hide()" update="pnlListado dlgNuevo mensajes"  />
+                          
+
+                        </h:panelGrid>
+                        <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+                          <p:panelGrid id="display" columns="2" columnClasses="label,value">
+                              <h:outputText value="Fecha de Historia:" />
+                              <h:outputText value="#{historiaBean.historia.fecha}">
+                <f:convertDateTime pattern="MM/dd/yyyy" />
+            </h:outputText>
+                          </p:panelGrid>
+                        </p:dialog>	
+                    </p:dialog>	
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+

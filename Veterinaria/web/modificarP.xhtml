@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="./WEB-INF/facelets/template/plantilla.xhtml">
+            <ui:define name="title">
+               Modificar  Pacientes
+            </ui:define>
+            <ui:define name="content">  
+           
+                <h:form>
+                     <p:dataTable value="#{param}" var="p">
+                         <p:column headerText="Codigo" style="width: 20px">
+                             <h:inputText id="codigo" value="#{pacienteBean.paciente.codigo}" readonly="#{facesContext.renderResponse}" size="5"/>
+                         </p:column>
+
+                         <p:column headerText="Nombre y Apellidos" style="width: 30px">
+                             <h:inputText id="nombre" value="#{pacienteBean.paciente.nombre}" size="20"/>
+                         </p:column>
+
+                         <p:column headerText="Dueño o Cuidador" style="width: 30px">
+                             <h:selectOneMenu id="iddueno" value="#{pacienteBean.paciente.iddueno}">
+                                 <f:selectItems value="#{pacienteBean.duenos}" var="d" itemLabel="#{d.nombre}" itemValue="#{d.id}"/>
+                        </h:selectOneMenu>
+                         </p:column> 
+                         
+                                              
+                    <p:column headerText="Veterinario" style="width: 30px">
+                         <h:selectOneMenu  id="idveterinario" value="#{pacienteBean.paciente.idveterinario}">
+                         <f:selectItems value="#{veterinarioBean.veterinarios}" var="v" itemLabel="#{v.nombre}" itemValue="#{v.id}"/>
+                        </h:selectOneMenu>
+                         </p:column> 
+                         
+                          <p:column headerText="Enfermedad" style="width: 30px">
+                              <h:selectOneMenu  id="codigoenfermedad" value="#{pacienteBean.paciente.codigoenfermedad}">
+                                  <f:selectItems value="#{enfermedadBean.enfermedades}" var="e" itemLabel="#{e.nombre}" itemValue="#{e.codigo}"/>
+                        </h:selectOneMenu>
+                         </p:column> 
+                         
+                           <p:column headerText="Medicamentos" style="width: 30px">
+                               <h:selectOneMenu  id="codigomedicamento" value="#{pacienteBean.paciente.codigomedicamento}">
+                                   <f:selectItems value="#{medicamentoBean.medicamentos}" var="m" itemLabel="#{m.nombre}" itemValue="#{m.codigo}"/>
+                        </h:selectOneMenu>
+                         </p:column> 
+
+                         <p:column headerText="Estado" style="width: 10px">
+                             <h:selectBooleanCheckbox id="estado" value="#{pacienteBean.paciente.estado}"/>
+                            <h:outputLabel for="estado" value="Estado"/>
+                         </p:column>
+
+                     </p:dataTable>
+                    
+                    <p:commandButton value="Modificar" action="#{pacienteBean.modificar()}" icon="ui-icon-refresh"/>
+                    <p:commandButton  value="Regresar" action="listarP" icon="ui-icon-arrowreturnthick-1-w" />
+                 
+                    
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

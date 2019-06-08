@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="./WEB-INF/facelets/template/plantilla.xhtml">
+            <ui:define name="title">
+               Modificar  Medicamentos
+            </ui:define>
+            <ui:define name="content">  
+           
+                <h:form>
+                     <p:dataTable value="#{param}" var="m">
+                         <p:column headerText="Codigo" style="width: 3px">
+                             <h:inputText id="codigo" value="#{medicamentoBean.medicamento.codigo}" readonly="#{facesContext.renderResponse}" size="3"/>
+                         </p:column>
+
+                         <p:column headerText="Nombre Del Medicamento" style="width: 25px">
+                             <h:inputText id="nombre" value="#{medicamentoBean.medicamento.nombre}" size="20"/>
+                         </p:column>
+                         
+                           <p:column headerText="Estado" style="width: 5px">
+                               <h:selectBooleanCheckbox id="disponible" value="#{medicamentoBean.medicamento.estado}"/>
+                            <h:outputLabel for="estado" value="Estado"/>
+                         </p:column>
+
+                     </p:dataTable>
+                    
+                    <p:commandButton value="Modificar" action="#{medicamentoBean.modificar()}" icon="ui-icon-refresh"/>
+                    <p:commandButton  value="Regresar" action="listarM" icon="ui-icon-arrowreturnthick-1-w" />
+                 
+                    
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    <body>
+        <ui:composition template="./WEB-INF/facelets/template/plantilla.xhtml">
+            <ui:define name="title">
+                Listado Veterinarios
+            </ui:define>
+             <ui:define name="content">  
+              
+                <h:form>
+                    <p:outputPanel>     
+                        <p:dataTable value="#{veterinarioBean.veterinarios}" var="v" 
+                                     style="width:1020px;margin: 0 auto" rows="10"
+                                     paginator="true" paginatorPosition="bottom" emptyMessage="No hay registro de Veterinarios!">
+
+                            <p:column headerText="ID" style="width: 20px">
+                                <h:outputText value="#{v.id}"/>
+                            </p:column>
+                             <p:column headerText="Cedula" style="width: 80px">
+                                 <h:outputText value="#{v.cedula}"/>
+                            </p:column>
+
+                            <p:column headerText="Nombres y Apellidos" style="width: 200px" filterMatchMode="contains" filterBy="#{v.nombre}">
+
+                                <h:outputText value="#{v.nombre}"/>
+                            </p:column>
+
+
+                            <p:column headerText="Estado" style="width: 50px">
+                                <h:outputText value="#{v.estado ? 'ACTIVO' : 'INACTIVO'}"/>
+                            </p:column>
+
+                            <p:column headerText="Acciones" style="width: 100px">
+
+                                <h:commandLink action="mostrarV">
+                                    <f:param name="id" value="#{v.id}"/> 
+                                    <h:graphicImage library="img" name="view.png" width="16" height="16"/>
+                                </h:commandLink>&nbsp;
+
+                                <h:commandLink action="modificarV">
+                                    <f:param name="id" value="#{v.id}"/> 
+                                    <h:graphicImage library="img" name="Modificar.png" width="16" height="16"/>
+                                </h:commandLink>&nbsp;
+
+                                <h:commandLink action="#{veterinarioBean.eliminar()}">
+                                    <f:param name="id" value="#{v.id}"/>
+                                    <h:graphicImage library="img" name="eliminar.png" width="16" height="16"/>
+                                </h:commandLink>
+                            </p:column>          
+
+                        </p:dataTable>
+                    </p:outputPanel>
+                </h:form>
+            </ui:define> 
+        </ui:composition>
+    </body>
+</html>
+

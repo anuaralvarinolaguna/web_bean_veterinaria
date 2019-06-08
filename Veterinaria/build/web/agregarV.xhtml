@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <body>
+        <ui:composition template="./WEB-INF/facelets/template/plantilla.xhtml">
+            <ui:define name="title">
+                Agregar Veterinario
+            </ui:define>
+            <ui:define name="content">
+               
+                <h:form styleClass="form">
+                    <p:growl id="mensajes" showDetail="true" life="4000"/>
+
+                     <p:outputPanel style="padding-bottom: 5px; text-align: left">
+                        <p:commandButton value="Agregar" icon="ui-icon-document" onclick="PF('dlgNuevo').show()" />
+                        
+                            
+                    </p:outputPanel>
+
+                    <p:outputPanel id="pnlListado">
+                      
+                    </p:outputPanel>
+
+                    <p:outputPanel style="padding-top: 5px;">
+                        
+                    </p:outputPanel>
+
+                    <p:dialog header="Agregar un Veterinario" widgetVar="dlgNuevo" id="dlgNuevo" 
+                              closeOnEscape="true" modal="true">
+                        <h:panelGrid columns="2">
+
+
+                            <h:outputLabel for="cedula" value="Cedula: "/>
+                            <p:inputText id="cedula" value="#{veterinarioBean.veterinario.cedula}" size="12"
+                                         required="true" requiredMessage="La cedula es obligatoria!"/>
+                                                                        
+                            <h:outputLabel for="nombre" value="Nombres y Apellidos: "/>
+                            <p:inputText id="nombre" value="#{veterinarioBean.veterinario.nombre}" size="12"
+                            required="true" requiredMessage="El Nombre: es obligatorio!"/>
+
+                       
+                            <h:outputLabel for="estado" value="Estado: "/>
+                            <h:selectBooleanCheckbox id="estado" value="#{veterinarioBean.veterinario.estado}"/>
+
+
+                            <h:panelGroup/>
+                            <p:commandButton value="Agregar" 
+                                             action="#{veterinarioBean.setVeterinario(veterinarioBean.agregar())}" icon=" ui-icon-disk" 
+                                             oncomplete="PF('dlgNuevo').hide()" update="pnlListado dlgNuevo mensajes"  />
+                          
+
+                        </h:panelGrid>
+                    </p:dialog>	
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+

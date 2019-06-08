@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="./css/default.css"/>
+        <h:outputStylesheet name="./css/cssLayout.css"/>
+        <title>Veterinaria</title>
+    </h:head>
+
+    <h:body>
+
+        <div id="top">
+            <ui:insert name="top">
+
+                <h1 style="text-shadow: 2px 2px 2px darkgoldenrod; font-size: 50px">Veterinaria</h1>
+            </ui:insert>
+        </div>
+        <div>
+            <div id="left">
+                <ui:insert name="left">
+                    <h:form>
+                        <p:menu style="width:148px">
+
+                            <p:submenu label="Maestros">
+                                <p:menuitem value="Inicio" icon="ui-icon-home" outcome="index"/>
+                            </p:submenu>                                                                          
+                        </p:menu>  
+                    </h:form>
+                    <h:form>
+                        <p:growl autoUpdate="true"/>                               
+                        <p:panelMenu style="width:155px">
+                            <p:submenu label="Dueño">                                  
+                                <p:menuitem value="Agr. Dueños" icon="ui-icon-cart" action="agregar"/>
+                                <p:menuitem value="Listar Dueños" icon="ui-icon-pencil" action="listar"/>
+                            </p:submenu>
+                            <p:submenu label="Veterinario">
+                                <p:menuitem value="Agr. Veterinarios" icon="ui-icon-cart" action="agregarV"/>
+                                <p:menuitem value="Listar Veterinarios" icon="ui-icon-pencil" action="listarV"/>
+                            </p:submenu>                                  
+                            <p:submenu label="Enfermedad">
+                                <p:menuitem value="Agr. Enfermedad" icon="ui-icon-cart" action="agregarE"/>
+                                <p:menuitem value="Listar Enfermedades" icon="ui-icon-pencil" action="listarE"/>
+                            </p:submenu>
+
+                            <p:submenu label="Medicamentos">
+                                <p:menuitem value="Agr. Medicamentos" icon="ui-icon-cart" action="agregarM"/>
+                                <p:menuitem value="Listar Medicamentos" icon="ui-icon-pencil" action="listarM"/>
+                            </p:submenu>
+
+
+                        </p:panelMenu>
+                    </h:form> 
+                    <h:form>
+                        <p:growl autoUpdate="true"/>
+                        <h1>Transaciones</h1>  
+                        <p:panelMenu style="width:155px">  
+                            <p:submenu label="Pacientes">
+                               <p:menuitem value="Agr. Pacientes" icon="ui-icon-cart" action="agregarP"/>
+                                <p:menuitem value="Listar Pacientes" icon="ui-icon-pencil" action="listarP"/> </p:submenu>
+                            <p:submenu label="Historia Clinica">
+                                <p:menuitem value="Agr. Historia" icon="ui-icon-cart" action="agregarH"/>
+                                <p:menuitem value="Listar Historia" icon="ui-icon-pencil" action="listarH"/>
+                            </p:submenu>
+
+
+                        </p:panelMenu>
+                    </h:form> 
+
+                </ui:insert>
+            </div>
+            <div id="content" class="left_content">
+                <h2 style="text-shadow: 2px 2px 2px darkgoldenrod; font-size: 50px">
+                    <ui:insert name="title">
+
+                    </ui:insert>
+
+                </h2>
+
+                <ui:insert name="content">
+                </ui:insert>
+            </div>
+        </div>
+    </h:body>
+
+</html>
